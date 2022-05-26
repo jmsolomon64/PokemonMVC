@@ -1,4 +1,9 @@
 var builder = WebApplication.CreateBuilder(args);
+//Adds http client with pokemon api
+builder.Services.AddHttpClient("pokeapi", client =>
+{
+    client.BaseAddress = new Uri("https://pokeapi.co/api/v2/");
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

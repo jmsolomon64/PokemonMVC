@@ -6,6 +6,12 @@ namespace PokemonMVC.Controllers;
 
 public class PokemonController : Controller
 {
+    //instance of http client
+    private readonly  HttpClient _httpClient;
+    public PokemonController(IHttpClientFactory httpClientFactory)
+    {
+        _httpClient = httpClientFactory.CreateClient("pokeapi"); //sets client equal to pokeapi in program.cs
+    }
     //Action to view Index
     public IActionResult Index()
     {
