@@ -8,12 +8,12 @@ namespace PokemonMVC.Models
         public string Name {get; set;}
 
         [JsonPropertyName("id")]
-        public string PokedexNumber {get; set;}
+        public int PokedexNumber {get; set;}
 
         [JsonPropertyName("height")]
-        public string Height {get; set;}
+        public int Height {get; set;}
 
         [JsonPropertyName("weight")]
-        public string Weight {get; set;}
+        public int Weight {get; set;}
     }
 }

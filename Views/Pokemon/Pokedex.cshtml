@@ -1,0 +1,39 @@
+@model PokemonViewModel
+
+@{
+    ViewData["Title"] = "Pokemon";
+}
+
+<h1>Pokedex</h1>
+
+@if (Model.PokedexNumber > 0)
+{
+    <div>
+        <h2>@Model.Name</h2>
+        <hr>
+        <div>
+            <h4>Pokedex Number</h4>
+            <p>#@Model.PokedexNumber</p>
+            <hr>
+            <h4>Height</h4>
+            <p>@Model.Height cm</p>
+            <hr>
+            <h4>Weight</h4>
+            <p>@Model.Weight kg</p>
+        </div>
+        @{
+            if(Model.PokedexNumber == 1)
+            {
+                <span></span>
+            }
+            Model.PokedexNumber--;
+            <a asp-action="Pokedex" asp-route-id=@Model.PokedexNumber class="btn btn-secondary">Previous</a>
+            Model.PokedexNumber+=2;
+            <a asp-action="Pokedex" asp-route-id=@Model.PokedexNumber class="btn btn-secondary">Next</a>
+        }
+    </div>
+}
+else 
+{
+    <p>There are no results for this page.</p>
+}

@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using PokemonMVC.Models;
 
@@ -12,9 +13,22 @@ public class PokemonController : Controller
     {
         _httpClient = httpClientFactory.CreateClient("pokeapi"); //sets client equal to pokeapi in program.cs
     }
-    //Action to view Index
+
     public IActionResult Index()
     {
         return View();
     }
+    //Action to view Pokedex
+    public async Task<IActionResult> Pokedex(int id)
+    {
+        string route = $"pokemon/{id}";
+        HttpResponseMessage response = await _httpClient.GetAsync(route);
+
+        var responseString = await response.Content.ReadAsStringAsync();
+        var pokemon = JsonSerializer.Deserialize<PokemonViewModel>(responseString);
+
+        return View(pokemon);
+    }
+
+    
 }
